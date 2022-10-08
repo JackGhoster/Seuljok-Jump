@@ -6,12 +6,14 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask basicPlatform;
-    public float horizontalMovement = 0f;
+    public float basicPlatformJumpForce = 0.5f;
+    public float movementSpeed = 0.2f;
+    private float horizontalMovement = 0f;
     private float maxSpeed = 100f;
     private float limitedSpeed = 95f;
-    public float movementSpeed = 0.2f;
-    public float outOfBoundsRight = 0.6f;
-    public float outOfBoundsLeft = -0.6f;
+    private float outOfBoundsRight = 0.6f;
+    private float outOfBoundsLeft = -0.6f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +29,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(horizontalMovement * Time.fixedDeltaTime, rb.velocity.y);
         onPlayerOutOfBounds();
+  
     }
 
-    private void onPlatformCollide()
-    {
 
-    }
     private void onPlayerOutOfBounds()
     {
         if (transform.position.x > outOfBoundsRight)
