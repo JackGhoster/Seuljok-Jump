@@ -71,26 +71,27 @@ public class PlayerMovement : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {      
+    {
+        animator.SetTrigger("Collides");
         Platform platform = new Platform();
-        StartCoroutine(AnimTriggerDelay("Collides",5));
+        //StartCoroutine(AnimTriggerDelay("Collides",5));
         GameObject temp = collision.gameObject;
         platform.PlatformHandler(temp, rb);
     }
 
-    IEnumerator AnimTriggerDelay(string name, float duration)
-    {
-        animator.SetTrigger(name);
-        float time = 0;
-        while (time < duration)
-        {
-            time += Time.deltaTime;       
-            animator.ResetTrigger(name);
-            yield return null;
+    //IEnumerator AnimTriggerDelay(string name, float duration)
+    //{
+    //    animator.SetTrigger(name);
+    //    float time = 0;
+    //    while (time < duration)
+    //    {
+    //        time += Time.deltaTime;       
+    //        animator.ResetTrigger(name);
+    //        yield return null;
 
-        }
+    //    }
 
-    }
+    //}
 }
 
 public class Platform
