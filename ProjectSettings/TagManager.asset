@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - basicPlatform
+  - jumpPad
   layers:
   - Default
   - TransparentFX
@@ -40,4 +42,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 3676564993
+    locked: 0
+  - name: Clouds
+    uniqueID: 1180573733
+    locked: 0
+  - name: Platform
+    uniqueID: 950700509
+    locked: 0
+  - name: Player
+    uniqueID: 776002679
     locked: 0
