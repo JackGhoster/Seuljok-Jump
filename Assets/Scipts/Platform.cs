@@ -41,7 +41,8 @@ public class Platform : MonoBehaviour
         }
         else if (platform.CompareTag(weakPlatform))
         {
-
+            WeakPlatform wp = new WeakPlatform();
+            wp.WeakPlatformAction(playerRb);
         }
     }
     private void BasicPlatformAction(Rigidbody2D rb)

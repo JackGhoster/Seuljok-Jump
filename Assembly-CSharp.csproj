@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scipts\PlayerMovement.cs" />
     <Compile Include="Assets\Scipts\CameraMovement.cs" />
     <Compile Include="Assets\Scipts\JumpPadPlatform.cs" />
+    <Compile Include="Assets\Scipts\WeakPlatform.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
