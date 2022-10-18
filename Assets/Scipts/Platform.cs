@@ -47,8 +47,9 @@ public class Platform : MonoBehaviour
     }
     private void BasicPlatformAction(Rigidbody2D rb)
     {
-        Vector2 thrustPower = new Vector2(0, .004f);
-        rb.AddForce(thrustPower);
+        
+        Vector2 thrustPower = new Vector2(0, .0001f);
+        rb.AddForce(thrustPower, ForceMode2D.Impulse);
     }
 }
 

@@ -8,11 +8,19 @@ public class CameraMovement : MonoBehaviour
     public Vector2 targetPos;
     public Transform background1;
     public Transform background2;
-    private float bgSize;
+    public GameManager manager;
+   
+
 
     public Transform target;
     public float MIN_X = -0.6f;
     public float MAX_X = 0.6f;
+
+    private float bgSize;
+
+    private int bgTimesSwitched = 0;
+
+    private bool bgSwitched = false;
     //private float targetAccel;
 
     // Start is called before the first frame update
@@ -26,9 +34,9 @@ public class CameraMovement : MonoBehaviour
     void FixedUpdate()
     {
         targetPos = new(target.position.x, target.position.y);
-        //targetAccel = targetPos.y * Time.fixedDeltaTime > 0 ? (targetPos.y * (Time.fixedDeltaTime * Time.fixedDeltaTime)) : targetAccel;
+        //targetAccel = targetPos.y * Time.fixedDeltaTime > 0 ? (targetPos.y * (Time.fixedDeltaTime * Time.fixedDeltaTime)) : -targetAccel;
         BgHandler();
-        CameraHeightLimiter();  
+        CameraHeightLimiter();
     }
 
     private void BgHandler()
@@ -36,13 +44,15 @@ public class CameraMovement : MonoBehaviour
         if (transform.position.y >= background2.position.y)
         {
             background1.position = new Vector3(background1.position.x, background2.position.y + bgSize, background1.position.z);
+            manager.targetFloat = background1.position.y + bgSize/2;
             BgSwitch();
         }
-
     }
     private void BgSwitch()
     {
         (background2, background1) = (background1, background2);
+        manager.SpawnPlatforms();
+
     }
     private void MoveToTarget()
     {
@@ -61,7 +71,7 @@ public class CameraMovement : MonoBehaviour
         }
         else if(targetPos.y < background1.position.y - bgSize/2)
         {
-            Debug.Log("Hi");
+            //death func
         }
     }
 }

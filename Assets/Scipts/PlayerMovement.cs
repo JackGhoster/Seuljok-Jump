@@ -7,13 +7,11 @@ public class PlayerMovement : MonoBehaviour
 {
     public Animator animator;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private LayerMask basicPlatform;
-    public float basicPlatformJumpForce = 0.5f;
     public float movementSpeed = 0.2f;
     private float horizontalMovement = 0f;
     private float maxSpeed = 100f;
     private float limitedXSpeed = 95f;
-    private float maxSpeedY = 2f;
+    private float maxSpeedY = 1.5f;
     private float outOfBoundsRight = 0.6f;
     private float outOfBoundsLeft = -0.6f;
 
@@ -25,17 +23,17 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speedLimiter();
+        SpeedLimiter();
     }
 
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontalMovement * Time.fixedDeltaTime, (rb.velocity.y < maxSpeedY) ? rb.velocity.y : maxSpeedY);
-        onPlayerOutOfBounds();
+        OnPlayerOutOfBounds();
     }
 
 
-    private void onPlayerOutOfBounds()
+    private void OnPlayerOutOfBounds()
     {
         if (transform.position.x > outOfBoundsRight)
         {
@@ -47,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void speedLimiter()
+    private void SpeedLimiter()
     {
         if (horizontalMovement < maxSpeed && horizontalMovement > -maxSpeed)
         {
