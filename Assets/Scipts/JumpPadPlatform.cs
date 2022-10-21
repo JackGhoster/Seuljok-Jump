@@ -20,6 +20,7 @@ public class JumpPadPlatform : MonoBehaviour
 
     public void JumpPadAction(Rigidbody2D rb)
     {
+        rb.velocity = new Vector2(0, 0);
         Vector2 thrustPower = new Vector2(0, .0003f);
         rb.AddForce(thrustPower, ForceMode2D.Impulse);
     }

@@ -44,7 +44,7 @@ public class CameraMovement : MonoBehaviour
         if (transform.position.y >= background2.position.y)
         {
             background1.position = new Vector3(background1.position.x, background2.position.y + bgSize, background1.position.z);
-            manager.targetFloat = background1.position.y + bgSize/2;
+            manager.targetFloat = background1.position.y - bgSize/2;
             BgSwitch();
         }
     }

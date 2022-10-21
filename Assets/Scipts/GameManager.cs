@@ -45,11 +45,12 @@ public class GameManager : MonoBehaviour
 
         platformsInScene.Add(starterPlatform);
 
-        PlatformInstantiator(platformPrefabs[Random.Range(0, platformPrefabs.Count)]);
-        //for (int i = 0; i < platformMaxCount; i++)
-        //{
-        //    OnSafeSpawnDangerousPlatform();
-        //}
+        PlatformInstantiator(safePlatformPrefabs[Random.Range(0, platformPrefabs.Count)]);
+        for (int i = 0; i < platformMaxCount; i++)
+        {
+    
+        }
+
     }
 
     // Update is called once per frame
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < platformMaxCount; i++)
         {
             OnSafeSpawnDangerousPlatform();
+            Debug.Log(needSaferPlatforms);
         }
     }
 
@@ -89,9 +91,14 @@ public class GameManager : MonoBehaviour
     public void PlatformInstantiator(GameObject platform)
     {
         Vector3 spawnPos = new Vector3();
+
+        float minRandY = 0.2f;
+        float maxRandY = 2f;
+        float randX = 0.5f;
+
         //spawnPos.y += Random.Range(targetTransform.position.y + 0.5f, 1f);
-        spawnPos.y += Random.Range(targetFloat + 0.1f, targetFloat + 2f);
-        spawnPos.x = Random.Range(-.5f, .5f);
+        spawnPos.y += Random.Range(targetFloat + minRandY, targetFloat + maxRandY);
+        spawnPos.x = Random.Range(-randX, randX);
         savedPlatform = GameObject.Instantiate(platform, spawnPos, Quaternion.identity) as GameObject;       
         platformsInScene.Add(savedPlatform);
         ClosestPlatformChecker(platformsInScene[lastPlatform], savedPlatform);
@@ -101,12 +108,12 @@ public class GameManager : MonoBehaviour
     public void ClosestPlatformChecker(GameObject targetPlatform, GameObject currentPlatform)
     {
         maxOfDangerousPlatforms = maxOfWeakPlatforms + maxOfSpikePlatforms;
-          
+        int dangerousPlatformLimit = 3;
         string currentPlatformTag = currentPlatform.tag;
         string targetPlatformTag = targetPlatform.tag;
 
-
-        if (currentPlatformTag != targetPlatformTag && maxOfDangerousPlatforms < 3)
+        Debug.Log(maxOfDangerousPlatforms);
+        if (currentPlatformTag != targetPlatformTag && maxOfDangerousPlatforms <= dangerousPlatformLimit)
         {
             maxOfDangerousPlatforms--;
             needSaferPlatforms = false;
@@ -123,6 +130,7 @@ public class GameManager : MonoBehaviour
                 maxOfSpikePlatforms++;
             }
             needSaferPlatforms = true;
+            maxOfDangerousPlatforms--;
         }
     }
 

@@ -24,6 +24,7 @@ public class WeakPlatform : MonoBehaviour
 
     public void WeakPlatformAction(Rigidbody2D rb)
     {
+        rb.velocity = new Vector2(0, 0);
         Vector2 thrustPower = new Vector2(0, .002f);
         rb.AddForce(thrustPower);
     }
