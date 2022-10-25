@@ -31,7 +31,7 @@ public class Platform : MonoBehaviour
         else if (platform.CompareTag(jumpPad))
         {
             //JumpPadPlatform jp = gameObject.AddComponent<JumpPadPlatform>();
-            JumpPadPlatform jp = new JumpPadPlatform();
+            JumpPadPlatform jp = gameObject.AddComponent<JumpPadPlatform>();
 
             jp.JumpPadAction(playerRb);
         }
@@ -41,7 +41,7 @@ public class Platform : MonoBehaviour
         }
         else if (platform.CompareTag(weakPlatform))
         {
-            WeakPlatform wp = new WeakPlatform();
+            WeakPlatform wp = gameObject.AddComponent<WeakPlatform>();
             wp.WeakPlatformAction(playerRb);
         }
     }
@@ -49,7 +49,7 @@ public class Platform : MonoBehaviour
     {
 
         rb.velocity = new Vector2(0, 0);
-        Vector2 thrustPower = new Vector2(0, .0001f);
+        Vector2 thrustPower = new Vector2(0, .0002f);
         rb.AddForce(thrustPower, ForceMode2D.Impulse);
     }
 }

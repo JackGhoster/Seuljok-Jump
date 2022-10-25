@@ -16,12 +16,14 @@ public class GameManager : MonoBehaviour
     private float lastSpawnPos;
 
 
-    public int platformMaxCount = 10;
+    public int platformSpawnCount = 10;
+    public int platformLimit = 50;
 
     private int lastPlatform = 0;
-    private int maxOfWeakPlatforms;
-    private int maxOfSpikePlatforms;
-    private int maxOfDangerousPlatforms;
+    private int weakPlatformCounter;
+    private int spikePlatformCounter;
+    private int dangerousPlatformCounter = 0;
+    private int destroyIndex = 0;
 
     List<GameObject> platformPrefabs = new List<GameObject>();
     List<GameObject> safePlatformPrefabs = new List<GameObject>();
@@ -37,26 +39,18 @@ public class GameManager : MonoBehaviour
 
         platformPrefabs.Add(basicPlatform);
         platformPrefabs.Add(weakPlatform);
-        platformPrefabs.Add(spikePlatform);
+        //platformPrefabs.Add(spikePlatform);
         platformPrefabs.Add(jumpPad);
 
         safePlatformPrefabs.Add(basicPlatform);
         safePlatformPrefabs.Add(jumpPad);
 
         platformsInScene.Add(starterPlatform);
-
-        PlatformInstantiator(safePlatformPrefabs[Random.Range(0, platformPrefabs.Count)]);
-        for (int i = 0; i < platformMaxCount; i++)
-        {
-    
-        }
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
 
     }
 
@@ -67,11 +61,12 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlatforms()
     {
-        for (int i = 0; i < platformMaxCount; i++)
+        for (int i = 0; i < platformSpawnCount; i++)
         {
             OnSafeSpawnDangerousPlatform();
-            Debug.Log(needSaferPlatforms);
+            //Debug.Log(needSaferPlatforms);
         }
+        //Debug.Log(string.Format("Number of objects in Scene: {0}",platformsInScene.Count));
     }
 
 
@@ -80,6 +75,9 @@ public class GameManager : MonoBehaviour
         if (needSaferPlatforms == true)
         {
             PlatformInstantiator(safePlatformPrefabs[Random.Range(0, safePlatformPrefabs.Count)]);
+            weakPlatformCounter = 0;
+            spikePlatformCounter = 0;
+            dangerousPlatformCounter = 0;
         }
         else
         {
@@ -92,46 +90,63 @@ public class GameManager : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3();
 
-        float minRandY = 0.2f;
-        float maxRandY = 2f;
+        float minRandY = 0.3f;
+        float maxRandY = 1.8f;
         float randX = 0.5f;
 
         //spawnPos.y += Random.Range(targetTransform.position.y + 0.5f, 1f);
         spawnPos.y += Random.Range(targetFloat + minRandY, targetFloat + maxRandY);
         spawnPos.x = Random.Range(-randX, randX);
-        savedPlatform = GameObject.Instantiate(platform, spawnPos, Quaternion.identity) as GameObject;       
+        savedPlatform = GameObject.Instantiate(platform, spawnPos, Quaternion.identity) as GameObject;
         platformsInScene.Add(savedPlatform);
-        ClosestPlatformChecker(platformsInScene[lastPlatform], savedPlatform);
-        lastPlatform++;      
+        
+        PlatformChecker(platformsInScene[lastPlatform], savedPlatform);
+        lastPlatform++;
     }
 
-    public void ClosestPlatformChecker(GameObject targetPlatform, GameObject currentPlatform)
+    public void PlatformChecker(GameObject targetPlatform, GameObject currentPlatform)
     {
-        maxOfDangerousPlatforms = maxOfWeakPlatforms + maxOfSpikePlatforms;
-        int dangerousPlatformLimit = 3;
+        int dangerousPlatformLimit = 1;
         string currentPlatformTag = currentPlatform.tag;
         string targetPlatformTag = targetPlatform.tag;
 
-        Debug.Log(maxOfDangerousPlatforms);
-        if (currentPlatformTag != targetPlatformTag && maxOfDangerousPlatforms <= dangerousPlatformLimit)
+
+        if (currentPlatformTag == "weakPlatform")
         {
-            maxOfDangerousPlatforms--;
-            needSaferPlatforms = false;
+            //Debug.Log("weak");
+            weakPlatformCounter++;
+        }
+        else if (currentPlatformTag == "spikePlatform")
+        {
+            //Debug.Log("spike");
+            spikePlatformCounter++;
         }
 
         else
-        {           
-            if (currentPlatformTag == "weakPlatform")
-            {
-                maxOfWeakPlatforms++;
-            }
-            else if (currentPlatformTag == "spikePlatform")
-            {
-                maxOfSpikePlatforms++;
-            }
-            needSaferPlatforms = true;
-            maxOfDangerousPlatforms--;
+        {
+            needSaferPlatforms = false;
         }
+
+        dangerousPlatformCounter = weakPlatformCounter + spikePlatformCounter;
+
+        if (dangerousPlatformCounter > dangerousPlatformLimit)
+        {
+            needSaferPlatforms = true;
+        }
+    }
+
+
+    public void DestroyOnPlatformCountLimitExceeded()
+    {
+        if (platformsInScene.Count > platformLimit)
+        {
+            for(int i = 0; i < platformsInScene.Count - 10; i++)
+            {
+                Destroy(platformsInScene[i]);     
+                
+            }
+        }
+
     }
 
 }

@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetTrigger("Collides");
         //Platform platform = gameObject.AddComponent(typeof(Platform)) as Platform;
-        Platform platform = new Platform();
+        Platform platform = gameObject.AddComponent<Platform>();
 
         GameObject temp = collision.gameObject;
 

@@ -52,7 +52,7 @@ public class CameraMovement : MonoBehaviour
     {
         (background2, background1) = (background1, background2);
         manager.SpawnPlatforms();
-
+        manager.DestroyOnPlatformCountLimitExceeded();
     }
     private void MoveToTarget()
     {
