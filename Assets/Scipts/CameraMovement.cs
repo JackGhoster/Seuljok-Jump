@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using UnityEngine.SceneManagement;
 public class CameraMovement : MonoBehaviour
 {
     public Vector2 targetPos;
@@ -71,7 +71,7 @@ public class CameraMovement : MonoBehaviour
         }
         else if(targetPos.y < background1.position.y - bgSize/2)
         {
-            //death func
+            SceneManager.LoadScene("MenuScene");
         }
     }
 }

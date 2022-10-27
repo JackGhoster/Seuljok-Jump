@@ -8,6 +8,7 @@ TagManager:
   - jumpPad
   - weakPlatform
   - spikePlatform
+  - pointCounter
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - UI
   - Player
   - BasicPlatform
-  - 
+  - PointCounter
   - 
   - 
   - 
@@ -56,4 +57,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 776002679
+    locked: 0
+  - name: PointCounter
+    uniqueID: 1443344815
     locked: 0
