@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using System;
+
+
 public class CameraMovement : MonoBehaviour
 {
     public Vector2 targetPos;
     public Transform background1;
     public Transform background2;
-    public GameManager manager;
-   
-
+    public GameManager manager;    
+    
 
     public Transform target;
     public float MIN_X = -0.6f;
