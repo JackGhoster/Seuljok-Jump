@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalMovement = 0f;
     private float maxSpeed = 100f;
     private float limitedXSpeed = 95f;
-    private float maxSpeedY = 1.5f;
+    private float maxSpeedY = 1.65f;
     private float outOfBoundsRight = 0.6f;
     private float outOfBoundsLeft = -0.6f;
 
@@ -63,9 +63,11 @@ public class PlayerMovement : MonoBehaviour
         animator.SetTrigger("Collides");
         //Platform platform = gameObject.AddComponent(typeof(Platform)) as Platform;
         Platform platform = gameObject.AddComponent<Platform>();
+        
 
         GameObject temp = collision.gameObject;
 
         platform.PlatformHandler(temp, rb);
+        Destroy(platform);
     }
 }

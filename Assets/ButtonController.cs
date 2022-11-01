@@ -8,6 +8,7 @@ public class ButtonController : MonoBehaviour
     [SerializeField] private string MainScenePath = "MainScene";
     [SerializeField] private string InfoScenePath = "InfoScene";
     [SerializeField] private string MenuScenePath = "MenuScene";
+    private bool soundToggle = true;
     public void OnPlayButton()
     {
         SceneManager.LoadScene(MainScenePath);
@@ -21,5 +22,19 @@ public class ButtonController : MonoBehaviour
     public void OnReturnButton()
     {
         SceneManager.LoadScene(MenuScenePath);
+    }
+
+    public void OnSoundButton()
+    {
+        soundToggle = !soundToggle;
+        
+        if (soundToggle == false)
+        {
+            AudioListener.volume = 0;
+        }
+        else
+        {
+            AudioListener.volume = 1;
+        }
     }
 }

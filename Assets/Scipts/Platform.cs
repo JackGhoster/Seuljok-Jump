@@ -10,6 +10,7 @@ public class Platform : MonoBehaviour
     private string weakPlatform = "weakPlatform";
 
     public Animator animator;
+    public AudioSource SFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +33,8 @@ public class Platform : MonoBehaviour
         {
             //JumpPadPlatform jp = gameObject.AddComponent<JumpPadPlatform>();
             JumpPadPlatform jp = gameObject.AddComponent<JumpPadPlatform>();
-
             jp.JumpPadAction(playerRb);
+            Destroy(jp);
         }
         else if (platform.CompareTag(spikePlatform))
         {
@@ -43,6 +44,7 @@ public class Platform : MonoBehaviour
         {
             WeakPlatform wp = gameObject.AddComponent<WeakPlatform>();
             wp.WeakPlatformAction(playerRb);
+            Destroy(wp);
         }
     }
     private void BasicPlatformAction(Rigidbody2D rb)
@@ -51,6 +53,11 @@ public class Platform : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
         Vector2 thrustPower = new Vector2(0, .0002f);
         rb.AddForce(thrustPower, ForceMode2D.Impulse);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        SFX.Play();        
     }
 }
 

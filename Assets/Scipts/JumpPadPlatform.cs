@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class JumpPadPlatform : MonoBehaviour
 {
     public Animator animator;
-    public bool isCollided = false;
+    public AudioSource SFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +20,13 @@ public class JumpPadPlatform : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        animator.SetTrigger("Collides");
-    }
+
+        if(!System.Object.ReferenceEquals(gameObject,null))
+        {
+            animator.SetTrigger("Collides");
+            SFX.Play();         
+        }
+    }   
 
     public void JumpPadAction(Rigidbody2D rb)
     {

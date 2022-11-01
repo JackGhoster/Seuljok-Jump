@@ -7,6 +7,7 @@ public class WeakPlatform : MonoBehaviour
 {
     public Animator animator;
     private SpriteRenderer spriteRenderer;
+    public AudioSource SFX;
     private float transparency;
     // Start is called before the first frame update
     void Start()
@@ -29,8 +30,10 @@ public class WeakPlatform : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
         animator.SetTrigger("Collides");
+        SFX.Play();
+
     }
     private void AnimationChecker(Animator an, string name)
     {

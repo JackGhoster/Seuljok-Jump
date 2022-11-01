@@ -182,10 +182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1944478077}
   rb: {fileID: 4984739190244919484}
-  basicPlatform:
-    serializedVersion: 2
-    m_Bits: 128
-  basicPlatformJumpForce: 0.5
   movementSpeed: 1
 --- !u!95 &1944478077
 Animator:
@@ -221,8 +217,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1944478077}
   rb: {fileID: 4984739190244919484}
-  basicPlatform:
-    serializedVersion: 2
-    m_Bits: 0
-  basicPlatformJumpForce: 0.5
   movementSpeed: 0.2
