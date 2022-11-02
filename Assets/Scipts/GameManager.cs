@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
         Vector3 spawnPos = new Vector3();
 
         float minRandY = 0.3f;
-        float maxRandY = 1.5f;
+        float maxRandY = 1.4f;
         float randX = 0.45f;
 
         //spawnPos.y += Random.Range(targetTransform.position.y + 0.5f, 1f);

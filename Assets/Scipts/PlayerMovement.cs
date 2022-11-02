@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public Animator animator;
     [SerializeField] private Rigidbody2D rb;
-    public float movementSpeed = 0.2f;
+    protected float movementSpeed = 2f;
     private float horizontalMovement = 0f;
     private float maxSpeed = 100f;
     private float limitedXSpeed = 95f;
@@ -23,11 +23,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SpeedLimiter();
+        
     }
 
     private void FixedUpdate()
     {
+        SpeedLimiter();
         rb.velocity = new Vector2(horizontalMovement * Time.fixedDeltaTime, (rb.velocity.y < maxSpeedY) ? rb.velocity.y : maxSpeedY);
         OnPlayerOutOfBounds();
     }

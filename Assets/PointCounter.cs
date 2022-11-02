@@ -35,10 +35,12 @@ public class PointCounter : MonoBehaviour
         {
             newPoints += 1;
             targetOldPosY = target.transform.position.y;
-            OnPointsReachedPitchUp();
+            //OnPointsReachedPitchUp();
 
         }
     }
+
+    //feature that pithes the sound upon earning enough points, but we didn't like it :D
     public void OnPointsReachedPitchUp()
     {
         if(newPoints == pointsToPitch)

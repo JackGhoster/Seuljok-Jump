@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -297,8 +297,8 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 93420dbec72d37c4fbbc2984931b428d, type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 93420dbec72d37c4fbbc2984931b428d, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 93420dbec72d37c4fbbc2984931b428d, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: 7df35c2c22b4cd9408bb18a61d544ad0, type: 3}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -846,8 +846,8 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 5d066c21ff167fa48b3d708a6d2a1469, type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 5d066c21ff167fa48b3d708a6d2a1469, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 5d066c21ff167fa48b3d708a6d2a1469, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: 41936bde20246da4e8e5518c180c0ffe, type: 3}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -956,6 +956,11 @@ MonoBehaviour:
   MainScenePath: MainScene
   InfoScenePath: InfoScene
   MenuScenePath: MenuScene
+  SoundButton: {fileID: 230429179}
+  mutedSound: {fileID: 21300000, guid: 7df35c2c22b4cd9408bb18a61d544ad0, type: 3}
+  unmutedSound: {fileID: 21300000, guid: 8dc1f431c22b39c40b1d4865cbb8ca89, type: 3}
+  mutedSoundHighlight: {fileID: 21300000, guid: f9f9b91c422a20048b5c0a22f02e981a, type: 3}
+  unmutedSoundHighlight: {fileID: 21300000, guid: 93420dbec72d37c4fbbc2984931b428d, type: 3}
 --- !u!1 &1408642860
 GameObject:
   m_ObjectHideFlags: 0
