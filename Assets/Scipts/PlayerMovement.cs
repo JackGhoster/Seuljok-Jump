@@ -6,9 +6,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Animator animator;
+    //public TouchButtonHandler touchHandler;
+    public GameManager gameManager;
     [SerializeField] private Rigidbody2D rb;
     protected float movementSpeed = 2f;
     private float horizontalMovement = 0f;
+    private float buttonSpeed;
     private float maxSpeed = 100f;
     private float limitedXSpeed = 95f;
     private float maxSpeedY = 1.65f;
@@ -28,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        buttonSpeed = gameManager.buttonXSpeed;
         SpeedLimiter();
         rb.velocity = new Vector2(horizontalMovement * Time.fixedDeltaTime, (rb.velocity.y < maxSpeedY) ? rb.velocity.y : maxSpeedY);
         OnPlayerOutOfBounds();
@@ -48,13 +52,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void SpeedLimiter()
     {
+        //PC Code
+        //if (horizontalMovement < maxSpeed && horizontalMovement > -maxSpeed)
+        //{
+        //    horizontalMovement += (Input.GetAxisRaw("Horizontal") * movementSpeed);
+        //}
+        //else
+        //{
+        //    horizontalMovement = (Input.GetAxisRaw("Horizontal") * limitedXSpeed);
+        //}
+        
+        //Touch Code
         if (horizontalMovement < maxSpeed && horizontalMovement > -maxSpeed)
         {
-            horizontalMovement += (Input.GetAxisRaw("Horizontal") * movementSpeed);
+            horizontalMovement += (buttonSpeed  * movementSpeed);
         }
         else
         {
-            horizontalMovement = (Input.GetAxisRaw("Horizontal") * limitedXSpeed);
+            horizontalMovement = (buttonSpeed * limitedXSpeed);
         }
     }
 

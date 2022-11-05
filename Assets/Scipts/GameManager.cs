@@ -11,13 +11,18 @@ public class GameManager : MonoBehaviour
     public GameObject starterPlatform;
     public Transform targetTransform;
 
+    public float buttonXSpeed;
+    public TouchButtonHandler tbh;
 
     public float targetFloat;
+    
+
     private float lastSpawnPos;
 
 
     public int platformSpawnCount = 10;
     public int platformLimit = 50;
+
 
     private int lastPlatform = 0;
     private int weakPlatformCounter;
@@ -56,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        buttonXSpeed = tbh.buttonOutput;
     }
 
 
